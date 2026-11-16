@@ -6,7 +6,7 @@ pipeline {
         jdk 'Java17'
     }
     environment {
-        APP_PORT = '8085'
+        APP_PORT = '8383'
     }
 
     stages {
