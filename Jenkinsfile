@@ -25,7 +25,7 @@ pipeline {
             }
         }
 
-     stage('3. Run JAR') {
+ stage('3. Run JAR') {
     steps {
         script {
             sh """
@@ -37,7 +37,6 @@ pipeline {
                 fi
 
                 setsid nohup java -jar ./target/ibcgos_web-0.0.1-SNAPSHOT.jar > app.log 2>&1 < /dev/null &
-                disown
 
                 sleep 5
                 echo "Application démarrée sur le port ${APP_PORT}"
