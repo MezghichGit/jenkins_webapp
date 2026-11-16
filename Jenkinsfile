@@ -6,7 +6,7 @@ pipeline {
         jdk 'Java17'
     }
     environment {
-        APP_PORT = '6700'
+        APP_PORT = '6701'
     }
 
     stages {
@@ -28,24 +28,10 @@ pipeline {
         stage('3. Run JAR') {
             steps {
                 script {
-                    // Récupère dynamiquement le nom du jar généré dans target/
-                    def jarFile = sh(script: "ls target/*.jar | grep -v original | head -1", returnStdout: true).trim()
-
-                    // Stoppe une éventuelle instance précédente sur le même port
-                    sh """
-                        PID=\$(lsof -t -i:${APP_PORT} || true)
-                        if [ ! -z "\$PID" ]; then
-                            echo "Arrêt de l'ancien processus sur le port ${APP_PORT} (PID \$PID)"
-                            kill -9 \$PID || true
-                        fi
-                    """
+                 
 
                     // Lance le jar en arrière-plan, écoute sur toutes les interfaces
-                    sh """
-                        nohup java -jar ${jarFile} --server.port=${APP_PORT} --server.address=0.0.0.0 > app.log 2>&1 &
-                        sleep 5
-                        echo "Application démarrée sur le port ${APP_PORT}"
-                    """
+                    sh 'java -jar /target/ibcgos_web-0.0.1-SNAPSHOT.jar'
                 }
             }
         }
