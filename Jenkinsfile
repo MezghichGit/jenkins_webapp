@@ -25,16 +25,26 @@ pipeline {
             }
         }
 
-        stage('3. Run JAR') {
-            steps {
-                script {
-                 
+     stage('3. Run JAR') {
+    steps {
+        script {
+            sh """
+                PID=\$(lsof -t -i:${APP_PORT} || true)
+                if [ ! -z "\$PID" ]; then
+                    echo "Arrêt de l'ancien processus (PID \$PID)"
+                    kill -9 \$PID || true
+                    sleep 2
+                fi
 
-                    // Lance le jar en arrière-plan, écoute sur toutes les interfaces
-                    sh 'java -jar ./target/ibcgos_web-0.0.1-SNAPSHOT.jar'
-                }
-            }
+                setsid nohup java -jar ./target/ibcgos_web-0.0.1-SNAPSHOT.jar > app.log 2>&1 < /dev/null &
+                disown
+
+                sleep 5
+                echo "Application démarrée sur le port ${APP_PORT}"
+            """
         }
+    }
+}
     }
 
     post {
