@@ -10,7 +10,7 @@ pipeline {
         stage('1. Checkout') {
             steps {
                 git branch: 'master', // ou 'master', adaptez à votre branche
-                    url: 'https://github.com/MezghichGit/jenkins_webapp.git',
+                    url: 'https://github.com/MezghichGit/jenkins_webapp.git'
                     
             }
         }
@@ -49,7 +49,7 @@ pipeline {
 
     post {
         success {
-            echo "Déploiement réussi. Accessible sur http://https://jenkins.sip-academy.com:${APP_PORT}"
+            echo "Déploiement réussi. Accessible sur http://jenkins.sip-academy.com:${APP_PORT}"
         }
         failure {
             echo "Le build ou le déploiement a échoué."
