@@ -31,7 +31,7 @@ pipeline {
                  
 
                     // Lance le jar en arrière-plan, écoute sur toutes les interfaces
-                    sh 'java -jar /target/ibcgos_web-0.0.1-SNAPSHOT.jar'
+                    sh 'java -jar ./target/ibcgos_web-0.0.1-SNAPSHOT.jar'
                 }
             }
         }
