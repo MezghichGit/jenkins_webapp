@@ -3,6 +3,7 @@ pipeline {
 
 	tools {
         maven 'Maven310' // doit correspondre au nom donné dans Global Tool Configuration
+        jdk 'Java17'
     }
     environment {
         APP_PORT = '8085'
