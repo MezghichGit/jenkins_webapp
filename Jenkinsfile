@@ -1,6 +1,9 @@
 pipeline {
     agent any
 
+	tools {
+        maven 'Maven310' // doit correspondre au nom donné dans Global Tool Configuration
+    }
     environment {
         APP_PORT = '8085'
     }
