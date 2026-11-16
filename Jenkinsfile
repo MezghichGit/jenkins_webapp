@@ -3,7 +3,6 @@ pipeline {
 
     environment {
         APP_PORT = '8085'
-        JAR_NAME = 'app.jar' // adaptez si besoin, ou laissez dynamique (voir stage Build)
     }
 
     stages {
@@ -11,8 +10,8 @@ pipeline {
         stage('1. Checkout') {
             steps {
                 git branch: 'master', // ou 'master', adaptez à votre branche
-                    url: 'https://github.com/votre-user/votre-repo-prive.git',
-                    credentialsId: 'github-credentials-id' // ID des credentials configurés dans Jenkins
+                    url: 'https://github.com/MezghichGit/jenkins_webapp.git',
+                    
             }
         }
 
@@ -50,7 +49,7 @@ pipeline {
 
     post {
         success {
-            echo "Déploiement réussi. Accessible sur http://<IP_SERVEUR>:${APP_PORT}"
+            echo "Déploiement réussi. Accessible sur http://https://jenkins.sip-academy.com:${APP_PORT}"
         }
         failure {
             echo "Le build ou le déploiement a échoué."
