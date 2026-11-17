@@ -24,7 +24,7 @@ pipeline {
 
         // Gmail SMTP
         EMAIL_CREDENTIALS = 'Cred-Gmail-Mezghich'
-        EMAIL_TO = 'amine.mezghich@gmail.com'
+        EMAIL_TO = 'ma.mezghich@smart-it-partner.com'
     }
 
     stages {
@@ -164,7 +164,7 @@ pipeline {
                         <tr><td><b>Statut</b></td><td>SUCCESS</td></tr>
                         <tr><td><b>Image Docker</b></td><td>${DOCKERHUB_USERNAME}/${IMAGE_NAME}:${BUILD_NUMBER}</td></tr>
                         <tr><td><b>Container</b></td><td>${CONTAINER_NAME}</td></tr>
-                        <tr><td><b>Application</b></td><td>http://IP_DU_VPS:${HOST_PORT}</td></tr>
+                        <tr><td><b>Application</b></td><td>http://jenkins.sip-academy.com:${HOST_PORT}</td></tr>
                     </table>
 
                     <p>
